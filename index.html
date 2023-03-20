@@ -6,15 +6,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="description" content="Perform ballot-polling Bayesian audits for ranked voting elections
-    using a Dirichlet-tree prior distribution.">
+    using Dirichlet-tree prior distributions. Everest et al. (2022)
+    &lt;arXiv:2206.14605&gt;, &lt;arXiv:2209.03881&gt;.">
 <title>Ranked Voting Election Audits with Dirichlet-Trees • elections.dtree</title>
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
-<!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Ranked Voting Election Audits with Dirichlet-Trees">
+<!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Ranked Voting Election Audits with Dirichlet-Trees">
 <meta property="og:description" content="Perform ballot-polling Bayesian audits for ranked voting elections
-    using a Dirichlet-tree prior distribution.">
+    using Dirichlet-tree prior distributions. Everest et al. (2022)
+    &lt;arXiv:2206.14605&gt;, &lt;arXiv:2209.03881&gt;.">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -28,7 +30,7 @@
     
     <a class="navbar-brand me-2" href="index.html">elections.dtree</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">1.1.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -66,20 +68,22 @@
 <div class="page-header"><h1 id="ranked-voting-election-audits-with-dirichlet-trees">Ranked Voting Election Audits with Dirichlet-Trees<a class="anchor" aria-label="anchor" href="#ranked-voting-election-audits-with-dirichlet-trees"></a>
 </h1></div>
 <p>Perform ballot-polling Bayesian audits for ranked voting elections using a Dirichlet-tree prior distribution.</p>
-<p><!-- badges: start --> <a href="https://github.com/fleverest/elections.dtree/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/fleverest/elections.dtree/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/fleverest/elections.dtree?branch=main" class="external-link"><img src="https://codecov.io/gh/fleverest/elections.dtree/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
+<p><!-- badges: start --> <a href="https://cran.r-project.org/package=elections.dtree" class="external-link"><img src="https://www.r-pkg.org/badges/version/elections.dtree" alt="CRAN_Status_Badge"></a> <a href="https://fleverest.github.io/elections.dtree/"><img src="https://github.com/fleverest/elections.dtree/workflows/pkgdown/badge.svg" alt="pkgdown"></a> <a href="https://github.com/fleverest/elections.dtree/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/fleverest/elections.dtree/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://app.codecov.io/gh/fleverest/elections.dtree?branch=main" class="external-link"><img src="https://codecov.io/gh/fleverest/elections.dtree/branch/main/graph/badge.svg" alt="Codecov test coverage"></a> <!-- badges: end --></p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <div class="section level4">
 <h4 id="cran">CRAN<a class="anchor" aria-label="anchor" href="#cran"></a>
 </h4>
-<p>TBD</p>
+<p>To install the latest minor release of <code>elections.dtree</code> from CRAN:</p>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"elections.dtree"</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
 </h4>
-<p>To install the development version of <code>elections.dtree</code> from GitHub:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<p>To install the development release of <code>elections.dtree</code> from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("remotes")</span></span>
 <span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"fleverest/elections.dtree"</span><span class="op">)</span></span></code></pre></div>
 </div>
@@ -91,7 +95,7 @@
 <h4 id="why">Why?<a class="anchor" aria-label="anchor" href="#why"></a>
 </h4>
 <p>Bayesian audits of elections typically employ a Dirichlet prior, conjugate to a multinomial distribution for the observed ballots. For ranked voting systems, the number of ballot types can grow factorially. In the case of instant-runoff voting (IRV), a popular type of ranked voting system, the number of possible ballot types is <code>n!</code> with <code>n</code> candidates (assuming all candidates are ranked; it is even greater if partially completed ballots are permitted).</p>
-<p>The Dirichlet distribution is a simple and effective choice if the number of ballot types is small, but becomes problematic when this number gets large. As <code>n</code> grows, the prior concentration parameters (defined by <code>a0</code> in our implementation) need to be on the order of <code>1 / n!</code> to ensure the prior is not overly informative. If <code>n</code> is large enough, this may be smaller than the available floating-point precision. Also, the fact that this varies by <code>n</code> is inconvenient. A more practical alternative is given by the Dirichlet-tree distribution, which we implement in this package.</p>
+<p>The Dirichlet distribution is a simple and effective choice if the number of ballot types is small, but becomes problematic when this number gets large. As <code>n</code> grows, the prior concentration parameters (defined by <code>a0</code> in our implementation) need to be on the order of <code>1 / n!</code> to ensure the prior is not overly informative. If <code>n</code> is large enough, this may be smaller than the available precision. Also, the fact that this varies by <code>n</code> is inconvenient. A more practical alternative is given by the Dirichlet-tree distribution, which we implement in this package.</p>
 <p>The Dirichlet-tree distribution consists of nested Dirichlet distributions, arranged hierarchically in a tree structure. The structure represents the preference ordering of the candidates. Branches coming out of each node correspond to choices for which candidate to select as the next preferred, and nodes represent a ranking of candidates (a complete ranking for leaf nodes, and an incomplete ranking for internal nodes). We place a Dirichlet distribution at each node, to model the conditional split of preferences at that node. The structure as a whole then defines a Dirichlet-tree distribution. Just like the Dirichlet, it is conjugate to a multinomial distribution. Also, the Dirichlet-tree is a generalisation, including a Dirichlet as a special case.</p>
 <p>Using the Dirichlet-tree as a prior distribution allows it to scale efficiently to large <code>n</code>, and does not require setting the concentration parameters (<code>a0</code>) to values that depend on <code>n</code> to perform well. depend on <code>n</code> to perform well.</p>
 </div>
@@ -111,7 +115,7 @@
 <div class="section level4">
 <h4 id="s3-interface">S3 interface<a class="anchor" aria-label="anchor" href="#s3-interface"></a>
 </h4>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Initialize a new Dirichlet-tree for IRV elections with</span></span>
 <span><span class="co"># 26 candidates (named A through Z), requiring exactly 3 preferences</span></span>
 <span><span class="co"># specified for a valid ballot, and using a prior parameter of 1.5.</span></span>
@@ -157,7 +161,7 @@
 <div class="section level4">
 <h4 id="r6-interface">R6 interface<a class="anchor" aria-label="anchor" href="#r6-interface"></a>
 </h4>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Initialize a new Dirichlet-tree for IRV elections with</span></span>
 <span><span class="co"># 26 candidates (named A through Z), requiring exactly 3 preferences</span></span>
 <span><span class="co"># specified for a valid ballot, and using a prior parameter of 1.5.</span></span>
@@ -215,6 +219,7 @@
   </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
+<li><a href="https://cloud.r-project.org/package=elections.dtree" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/fleverest/elections.dtree/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/fleverest/elections.dtree/issues/" class="external-link">Report a bug</a></li>
 </ul>
@@ -256,7 +261,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.7.</p>
 </div>
 
     </footer>
